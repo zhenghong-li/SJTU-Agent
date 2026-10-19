@@ -23,16 +23,18 @@ export function registerZircTools(server: McpServer): void {
     {
       title: 'ZIRC 项目信息',
       description:
-        '读取 ZIRC 系统中指定项目编号（默认 ZIRC2026-08）的项目行信息，并解析项目详情 tag。只读。',
+        '读取 ZIRC 系统中指定项目编号的项目行信息，并解析项目详情 tag。只读。',
       inputSchema: {
         projectCode: z
           .string()
           .optional()
-          .describe('项目编号，默认 ZIRC2026-08'),
+          .describe('项目编号（也可用环境变量 SJTU_ZIRC_PROJECT_CODE 配置默认值）'),
       },
     },
     async ({ projectCode }) =>
-      executeTool(() => resolveProject(projectCode ?? 'ZIRC2026-08')),
+      executeTool(() =>
+        resolveProject(projectCode ?? process.env.SJTU_ZIRC_PROJECT_CODE ?? ''),
+      ),
   );
 
   server.registerTool(
@@ -40,12 +42,12 @@ export function registerZircTools(server: McpServer): void {
     {
       title: 'ZIRC 新增经费发生预填',
       description:
-        '在 ZIRC 系统打开指定项目（默认 ZIRC2026-08）的「新增经费发生」表单，预填类型/金额/说明/发票号，停在「提交审批」前；不提交、不审批。',
+        '在 ZIRC 系统打开指定项目的「新增经费发生」表单，预填类型/金额/说明/发票号，停在「提交审批」前；不提交、不审批。',
       inputSchema: {
         projectCode: z
           .string()
           .optional()
-          .describe('项目编号，默认 ZIRC2026-08'),
+          .describe('项目编号（也可用环境变量 SJTU_ZIRC_PROJECT_CODE 配置默认值）'),
         type: z
           .enum(EXPENSE_TYPES)
           .describe('经费类型（材料费/交通费/国内差旅费/其他…）'),

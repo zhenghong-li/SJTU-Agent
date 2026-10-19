@@ -68,9 +68,9 @@
 
 1. 打开 `https://zirc.sjtu.edu.cn/` → 点「进入系统」进入 `/Public/login` 后的系统首页；
 2. 顶部/侧边选「致远未来学者项目」→「我的项目」（`/Projectsmy/indexmy/`）；
-3. 我的项目列表中项目行：`[ZIRC2026-08] La₃Ni₂O₇ 及其可控变体的生长调控与电子结构研究`（导师：导师；成员：本人、成员B、成员C；预算 90000；状态：审核通过）；
-4. 点该行「操作」列的查看/修改按钮，进入项目详情 `/Projects/detail/tag/MDAwMDAwMDAwMLGuhpc`；
-5. 项目详情页点「**新增经费发生**」（实际链接 `/Projects/editjf/tag/MDAwMDAwMDAwMLGuhpc`）；
+3. 我的项目列表中项目行：`[ZIRC20XX-XX] 某研究项目`（导师：导师；成员：本人、成员B、成员C；预算 XXXXX；状态：审核通过）；
+4. 点该行「操作」列的查看/修改按钮，进入项目详情 `/Projects/detail/tag/<project-tag>`；
+5. 项目详情页点「**新增经费发生**」（实际链接 `/Projects/editjf/tag/<project-tag>`）；
 6. 在「新增经费发生」弹窗中填写：
    - **类型**（select，name=`name`）：材料费 / 测试化验加工费 / 交通费 / 国内差旅费 / 会议费 / 邮寄费 / 培训费 / 其他 / 办公及印刷费 / 劳务费 / 因公出境差旅费；
    - **金额**（input，name=`je`）；
@@ -83,7 +83,7 @@
 
 ## MCP 工具：ZIRC 预填（新增 2026-10-19）
 
-- `zirc_project_get`：读取指定项目编号（默认 ZIRC2026-08）的项目行信息并解析详情 tag；实测成功（导师导师、成员本人/成员B/成员C、预算 90000、审核通过）。
+- `zirc_project_get`：读取指定项目编号（默认 ZIRC20XX-XX）的项目行信息并解析详情 tag；实测成功（导师导师、成员本人/成员B/成员C、预算 XXXXX、审核通过）。
 - `zirc_expense_prefill`：自动进入项目详情 → 打开「新增经费发生」→ 预填 **类型 / 金额 / 说明 / 发票号** → **停在「提交审批」前**，返回字段与截图；不会提交、不会审批。
 - 实测（用 0.01 元 + TEST-0001 的占位值）：返回 `status:"prefilled_awaiting_submit"`、`submitted:false`，截图 `%LOCALAPPDATA%\sjtu-mcp\artifacts\zirc\zirc-expense-prefill-*.png`；测试表单随后已关闭，未产生任何数据。
 - 用法示例（DSH 中）：

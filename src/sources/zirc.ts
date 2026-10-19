@@ -15,8 +15,14 @@ export interface ZircProjectRef {
 }
 
 export async function resolveProject(
-  projectCode = 'ZIRC2026-08',
+  projectCode = process.env.SJTU_ZIRC_PROJECT_CODE?.trim() ?? '',
 ): Promise<ZircProjectRef> {
+  if (!projectCode) {
+    throw new SourceError('缺少 ZIRC 项目编号', {
+      code: 'VALIDATION',
+      hint: '调用时传 projectCode，或设置环境变量 SJTU_ZIRC_PROJECT_CODE',
+    });
+  }
   const { frame } = await openInner(PROJECT_INDEX);
   await frame.waitForTimeout(4000);
   const info = await frame.evaluate((code) => {

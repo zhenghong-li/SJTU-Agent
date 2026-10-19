@@ -31,6 +31,8 @@ npm run build
 npm run smoke        # 本地 MCP 握手 + tools/list 冒烟
 ```
 
+ZIRC 相关工具需要项目编号：调用时传 `projectCode`，或设置环境变量 `SJTU_ZIRC_PROJECT_CODE`。
+
 登录一次（会打开本机 Chrome）：
 
 ```text

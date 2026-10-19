@@ -28,7 +28,7 @@ export function registerReimburseTools(server: McpServer): void {
         invoiceQuery: z
           .string()
           .optional()
-          .describe('已有发票的搜索关键词：销售方/平台（如「享道出行」）、金额（如「80.52」）、标签或开票日期'),
+          .describe('已有发票的搜索关键词：销售方/平台、金额（如「XX.XX」）、标签或开票日期'),
         selectAllMatches: z
           .boolean()
           .optional()
@@ -36,7 +36,7 @@ export function registerReimburseTools(server: McpServer): void {
         fundingSource: z
           .string()
           .optional()
-          .describe('经费/项目关键词：项目名称、项目编号（ZIRC2026-08）或财务编号（AO240004/003/012）；不填则选第一个可用项目'),
+          .describe('经费/项目关键词：项目名称、项目编号或财务编号；不填则选第一个可用项目'),
         description: z.string().optional().describe('摘要（简短说明，如「市内交通费报销」）'),
         openOnly: z
           .boolean()

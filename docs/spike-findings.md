@@ -220,7 +220,7 @@
 **接口表（bundle 字符串实测）**：`/finance-claim/invoice/list`、`/invoice/title/list`、`/claim/info`、`/claim/project/list`、`/claim/contract/list`、`/claim/invoice/refresh`、`/claim/save`、`/claim/basic/draft/save`、`/claim/proj/draft/save`、`/claim/pay/draft/save`、`/invoice/ocr`、`/invoice/attach`、`/claim/search/project` 等。
 
 **实现**：`src/browser/finance.ts`（prefillReimbursement / prefillReimbursementOnPage）+ `src/tools/reimburse.ts`（`reimburse_prefill`）。
-**实测**：2026-10-19 15:07，`{invoiceQuery:"XX.XX", fundingSource:"ZIRC2026-08", description:"..."}` → `status:"prefilled_awaiting_submit"`，项目卡片 `AO240004/003/012 ZIRC2026-08 致远未来学者项目 ¥XX.XX`，合计 `¥XX.XX·1 张发票`，摘要已填；截图见 `%LOCALAPPDATA%\sjtu-mcp\artifacts\reimburse\`。**未提交、未支付。**
+**实测**：2026-10-19 15:07，`{invoiceQuery:"XX.XX", fundingSource:"ZIRC20XX-XX", description:"..."}` → `status:"prefilled_awaiting_submit"`，项目卡片 `AOxxxxxx/xxx/xxx ZIRC20XX-XX 致远未来学者项目 ¥XX.XX`，合计 `¥XX.XX·1 张发票`，摘要已填；截图见 `%LOCALAPPDATA%\sjtu-mcp\artifacts\reimburse\`。**未提交、未支付。**
 
 ## 17. 活动平台字段与报名逆向（2026-10-19 14:50–15:05）
 

@@ -69,7 +69,7 @@
   - "帮我看看交大公众号关于奖学金的通知" → `wechat_search` + `wechat_resolve_url` + `wechat_read_article`
   - "今天有什么课/作业/通知" → `calendar_events` + `notice_list`
   - "查一下我的课表和成绩入口" → `timetable_get` / `services_search`
-  - "帮我把那张 XX.XX 的交通发票报销一下，走 ZIRC2026 项目" → `reimburse_prefill`（预填后由本人核对提交）
+  - "帮我把那张 XX.XX 的交通发票报销一下，走 ZIRC20XX 项目" → `reimburse_prefill`（预填后由本人核对提交）
   - "最近有什么第二课堂活动" → `activity_list`（type=second-classroom）+ `activity_detail`
   - "搜一下邮箱里奖学金相关邮件" → `mail_search` + `mail_read`
 
@@ -118,14 +118,14 @@
 |---|---|---|
 | 上传 PDF 发票 | 发票管理对话框内 `上传发票` 按钮 → 隐藏 `input[type=file]`（accept `.pdf,.jpg,.jpeg,.png,.gif`）→ `POST /finance-claim/invoice/ocr` | `invoiceFiles[]` 逐个 `setInputFiles` 上传并等待 OCR 列表刷新（⚠️ 无真实发票未实传验证） |
 | 选择发票 | 发票管理对话框：搜索框（可通过开票单位/发票金额/标签/分享人搜索）+ `.el-table__row` 勾选 + `保存`（`POST /claim/invoice/refresh`） | `invoiceQuery` 命中行勾选；`selectAllMatches` 可全选；保存后校验表单发票列表 |
-| 选择经费/项目 | `button.pc-picker-card`（报销项目）→ 全屏选择器"选择授权项目/添加非授权项目"→ `label.el-checkbox[aria-label]` → `保存` | `fundingSource` 支持项目名/项目编号（ZIRC2026-08）/财务编号（AO240004/003/012）；勾选后校验 checkbox + 面板 + 表单卡片，失败自动取消 |
+| 选择经费/项目 | `button.pc-picker-card`（报销项目）→ 全屏选择器"选择授权项目/添加非授权项目"→ `label.el-checkbox[aria-label]` → `保存` | `fundingSource` 支持项目名/项目编号（ZIRC20XX-XX）/财务编号（AOxxxxxx/xxx/xxx）；勾选后校验 checkbox + 面板 + 表单卡片，失败自动取消 |
 | 简短说明 | "其他信息→摘要" `textarea` | `description` 写入摘要（input+change 事件），特殊事项说明不填 |
 | **强制安全** | `提交预约单` 按钮 | **从不点击**；`submitted:false`；返回截图 + 待人工确认清单 |
 
 **实测结果（2026-10-19，本机）**：
 
-- 调用：`reimburse_prefill({invoiceQuery:"XX.XX", fundingSource:"ZIRC2026-08", description:"市内交通费报销（MCP 预填，未提交）"})`；
-- 返回：`status:"prefilled_awaiting_submit"`、`total:"合计 ¥XX.XX· 1 张发票"`、发票=享道出行 XX.XX（2026-08-12）、报销项目=`AO240004/003/012 ZIRC2026-08 致远未来学者项目 ¥XX.XX`、摘要已填；
+- 调用：`reimburse_prefill({invoiceQuery:"XX.XX", fundingSource:"ZIRC20XX-XX", description:"市内交通费报销（MCP 预填，未提交）"})`；
+- 返回：`status:"prefilled_awaiting_submit"`、`total:"合计 ¥XX.XX· 1 张发票"`、发票=某出行平台 XX.XX（2026-08-12）、报销项目=`AOxxxxxx/xxx/xxx ZIRC20XX-XX 致远未来学者项目 ¥XX.XX`、摘要已填；
 - 截图：`%LOCALAPPDATA%\sjtu-mcp\artifacts\reimburse\reimburse-prefill-<ts>.png`（已验证画面：项目卡片/发票列表/合计正确，提交按钮未点击）；
 - `openOnly:true` 回退模式 ✅（仅打开表单）；
 - 未指定发票时的部分预填 ✅、`invoiceFiles` 不存在文件的容错 ✅（返回 warnings，不崩溃）；

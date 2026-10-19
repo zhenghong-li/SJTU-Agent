@@ -33,7 +33,7 @@ export interface ReimbursePrefillInput {
   invoiceQuery?: string;
   /** Select every invoice row matching `invoiceQuery` (default: first match only). */
   selectAllMatches?: boolean;
-  /** 经费/项目 keyword (name, project code like ZIRC2026-08, or 编号 AO240004/003/012). */
+  /** 经费/项目 keyword (project name, project code, or finance code). */
   fundingSource?: string;
   /** 摘要 (short description). */
   description?: string;
