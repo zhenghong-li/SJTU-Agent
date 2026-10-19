@@ -1,0 +1,21 @@
+node_modules/
+dist/
+artifacts/
+.cache/
+logs/
+*.log
+.env
+*.sqlite
+*.sqlite-*
+chrome-profile/
+sjtu_credentials*
+*.pem
+*.key
+
+# local probes / scratch scripts
+scripts/debug-*.mjs
+scripts/finisher-*.mjs
+scripts/inspect-*.mjs
+scripts/zirc-probe*.mjs
+scripts/zirc-close.mjs
+scripts/fix-dsh-patch.mjs
